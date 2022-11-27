@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.WebAPI.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.Infrastructure", "CryptocurrencyQuote.Infrastructure\CryptocurrencyQuote.Infrastructure.csproj", "{C82F9B53-2160-4769-A673-B7B915692680}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.Domain", "CryptocurrencyQuote.Domain\CryptocurrencyQuote.Domain.csproj", "{E0384935-E76D-4659-A0AB-0F3907869566}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.Domain", "src\CryptocurrencyQuote.Domain\CryptocurrencyQuote.Domain.csproj", "{E0384935-E76D-4659-A0AB-0F3907869566}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{99999E0A-88CC-4DBB-B1DF-87CECD0A64B8}"
 EndProject
