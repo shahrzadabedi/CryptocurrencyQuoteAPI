@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.WebAPI", "src\CryptocurrencyQuote.WebAPI\CryptocurrencyQuote.WebAPI.csproj", "{454EC0C2-2633-441E-8E87-6A765154B4B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.WebAPI.Tests", "CryptocurrencyQuote.WebAPI.Tests\CryptocurrencyQuote.WebAPI.Tests.csproj", "{9BAD92AD-B1C6-4567-A280-B328FA8C87A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.WebAPI.Tests", "test\CryptocurrencyQuote.WebAPI.Tests\CryptocurrencyQuote.WebAPI.Tests.csproj", "{9BAD92AD-B1C6-4567-A280-B328FA8C87A0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.Infrastructure", "src\CryptocurrencyQuote.Infrastructure\CryptocurrencyQuote.Infrastructure.csproj", "{C82F9B53-2160-4769-A673-B7B915692680}"
 EndProject
@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{99999E0A-88C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7F5DB13E-CC71-40CF-B9D9-25F894CE5D03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.Infrastructure.Tests", "CryptocurrencyQuote.Infrastructure.Tests\CryptocurrencyQuote.Infrastructure.Tests.csproj", "{5A77BA9C-6F0F-4745-B788-B6F3A6EF53CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.Infrastructure.Tests", "test\CryptocurrencyQuote.Infrastructure.Tests\CryptocurrencyQuote.Infrastructure.Tests.csproj", "{5A77BA9C-6F0F-4745-B788-B6F3A6EF53CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
