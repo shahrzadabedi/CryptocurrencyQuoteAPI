@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.WebAPI", "CryptocurrencyQuote.WebAPI\CryptocurrencyQuote.WebAPI.csproj", "{454EC0C2-2633-441E-8E87-6A765154B4B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.WebAPI.Tests", "CryptocurrencyQuote.WebAPI.Tests\CryptocurrencyQuote.WebAPI.Tests.csproj", "{9BAD92AD-B1C6-4567-A280-B328FA8C87A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.Infrastructure", "CryptocurrencyQuote.Service.Contracts\CryptocurrencyQuote.Infrastructure.csproj", "{C82F9B53-2160-4769-A673-B7B915692680}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.Domain", "CryptocurrencyQuote.Domain\CryptocurrencyQuote.Domain.csproj", "{E0384935-E76D-4659-A0AB-0F3907869566}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{99999E0A-88CC-4DBB-B1DF-87CECD0A64B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7F5DB13E-CC71-40CF-B9D9-25F894CE5D03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.Infrastructure.Tests", "CryptocurrencyQuote.Infrastructure.Tests\CryptocurrencyQuote.Infrastructure.Tests.csproj", "{5A77BA9C-6F0F-4745-B788-B6F3A6EF53CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{454EC0C2-2633-441E-8E87-6A765154B4B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{454EC0C2-2633-441E-8E87-6A765154B4B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{454EC0C2-2633-441E-8E87-6A765154B4B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{454EC0C2-2633-441E-8E87-6A765154B4B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BAD92AD-B1C6-4567-A280-B328FA8C87A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BAD92AD-B1C6-4567-A280-B328FA8C87A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BAD92AD-B1C6-4567-A280-B328FA8C87A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BAD92AD-B1C6-4567-A280-B328FA8C87A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C82F9B53-2160-4769-A673-B7B915692680}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C82F9B53-2160-4769-A673-B7B915692680}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C82F9B53-2160-4769-A673-B7B915692680}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C82F9B53-2160-4769-A673-B7B915692680}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0384935-E76D-4659-A0AB-0F3907869566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0384935-E76D-4659-A0AB-0F3907869566}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0384935-E76D-4659-A0AB-0F3907869566}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0384935-E76D-4659-A0AB-0F3907869566}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A77BA9C-6F0F-4745-B788-B6F3A6EF53CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A77BA9C-6F0F-4745-B788-B6F3A6EF53CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A77BA9C-6F0F-4745-B788-B6F3A6EF53CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A77BA9C-6F0F-4745-B788-B6F3A6EF53CB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{454EC0C2-2633-441E-8E87-6A765154B4B7} = {99999E0A-88CC-4DBB-B1DF-87CECD0A64B8}
+		{9BAD92AD-B1C6-4567-A280-B328FA8C87A0} = {7F5DB13E-CC71-40CF-B9D9-25F894CE5D03}
+		{C82F9B53-2160-4769-A673-B7B915692680} = {99999E0A-88CC-4DBB-B1DF-87CECD0A64B8}
+		{E0384935-E76D-4659-A0AB-0F3907869566} = {99999E0A-88CC-4DBB-B1DF-87CECD0A64B8}
+		{5A77BA9C-6F0F-4745-B788-B6F3A6EF53CB} = {7F5DB13E-CC71-40CF-B9D9-25F894CE5D03}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F51CC0A7-CC9D-4F2E-A931-342E14770C9C}
+	EndGlobalSection
+EndGlobal
