@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.WebAPI"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.WebAPI.Tests", "CryptocurrencyQuote.WebAPI.Tests\CryptocurrencyQuote.WebAPI.Tests.csproj", "{9BAD92AD-B1C6-4567-A280-B328FA8C87A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.Infrastructure", "CryptocurrencyQuote.Service.Contracts\CryptocurrencyQuote.Infrastructure.csproj", "{C82F9B53-2160-4769-A673-B7B915692680}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.Infrastructure", "CryptocurrencyQuote.Infrastructure\CryptocurrencyQuote.Infrastructure.csproj", "{C82F9B53-2160-4769-A673-B7B915692680}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.Domain", "CryptocurrencyQuote.Domain\CryptocurrencyQuote.Domain.csproj", "{E0384935-E76D-4659-A0AB-0F3907869566}"
 EndProject
