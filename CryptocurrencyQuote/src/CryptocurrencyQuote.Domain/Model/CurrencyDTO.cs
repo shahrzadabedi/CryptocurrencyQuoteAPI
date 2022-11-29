@@ -9,6 +9,6 @@ namespace CryptocurrencyQuote.Domain.Model
     public class CurrencyDTO
     {
         public string Symbol { get; set; }
-        public bool IsCrypro { get; set; }
+        public bool IsCrypto { get; set; }
     }
 }
