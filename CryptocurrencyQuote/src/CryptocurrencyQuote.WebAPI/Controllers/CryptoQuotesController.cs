@@ -9,16 +9,16 @@ namespace CryptocurrencyQuote.WebAPI.Controllers
     [ApiController]
     public class CryptoQuotesController : ControllerBase
     {
-        private ICryptocurrencyAPI cryptocurrencyApi;
+        private ICryptocurrencyAPI api;
         public CryptoQuotesController(ICryptocurrencyAPI cryptocurrencyApi)
         {
-            this.cryptocurrencyApi = cryptocurrencyApi;
+            this.api = cryptocurrencyApi;
         }
         [HttpGet(Name = "GetCryptoQuotes")]
-        public async Task<IActionResult> GetQuotes(string fromCurrency)
+        public async Task<IActionResult> GetQuotes([FromQuery]string fromCurrency)
         {
-            throw new NotImplementedException();
-//            cryptocurrencyApi.GetQuotes(fromCurrency, new List<CurrencyDTO>);
+            //var quotes = await api.GetQuotes(new Domain.Model.CurrencyDTO() { IsCrypto = true, Symbol = symbol }, toCurrencies);
+            return Ok();
         }
     }
 }

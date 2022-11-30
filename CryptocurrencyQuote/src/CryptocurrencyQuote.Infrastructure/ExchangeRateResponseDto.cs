@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CryptocurrencyQuote.Infrastructure
 {
-    public class ExchangeRateResponseDto
+    public class ConvertExchangeRateResponseDto
     {
         public DateTime Date { get; set; }
         public Info Info { get; set; }
@@ -40,9 +40,21 @@ namespace CryptocurrencyQuote.Infrastructure
 
     }
 
-    public class Rate
+    public class ExchangeRateError
     {
-        public string Name { get; set; }
-        public decimal Value { get; set; }
+        public Error Error { get; set; }
     }
+
+    public class Error
+    {
+        public string Message { get; set; }
+        public string Code { get; set; }
+    }
+
+    public class TooManyRequestsError
+    {
+        public string Message { get; set; }
+    }
+
+
 }

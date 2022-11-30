@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Xunit;
 using FluentAssertions;
 using System;
+using CryptocurrencyQuote.Domain.Model.Exceptions;
 
 namespace CryptocurrencyQuote.Infrastructure.Tests
 {
@@ -26,7 +27,7 @@ namespace CryptocurrencyQuote.Infrastructure.Tests
             var quotes = await api.GetQuotes(new Domain.Model.CurrencyDTO() { IsCrypto = true, Symbol = symbol },toCurrencies);
             
             //Assert
-            quotes.Count.Should().Equals(5);
+            quotes.Count.Should().Equals(toCurrencies.Count);
             
         }
 
@@ -41,9 +42,8 @@ namespace CryptocurrencyQuote.Infrastructure.Tests
             var toCurrencies = new List<Domain.Model.CurrencyDTO>() {
                 new Domain.Model.CurrencyDTO() { IsCrypto= false,Symbol= "USD"} ,
             };
-            //Act
-            //Assert
-            await Assert.ThrowsAsync<NotImplementedException>(() =>  api.GetQuotes(new Domain.Model.CurrencyDTO() { IsCrypto = true, Symbol = symbol }, toCurrencies));
+            //Act and Assert
+            await Assert.ThrowsAsync<BadRequestException>(() =>  api.GetQuotes(new Domain.Model.CurrencyDTO() { IsCrypto = true, Symbol = symbol }, toCurrencies));
 
         }
 

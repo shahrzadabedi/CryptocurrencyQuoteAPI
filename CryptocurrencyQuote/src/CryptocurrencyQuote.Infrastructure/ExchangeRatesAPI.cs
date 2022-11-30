@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using CryptocurrencyQuote.Domain.Model.Exceptions;
+
 namespace CryptocurrencyQuote.Infrastructure
 {
     public class ExchangeRatesAPI : ICryptocurrencyAPI
@@ -32,8 +34,8 @@ namespace CryptocurrencyQuote.Infrastructure
             if (response.IsSuccessStatusCode)
             {
                 var responseDto = JsonConvert.DeserializeObject<LatestExchangeRateResponse>((response.Content ?? "").ToString());
-              
-                if (responseDto != null )
+
+                if (responseDto != null)
                 {
                     var ratesDictionary = responseDto.Rates;
                     var keys = ratesDictionary.Keys;
@@ -41,7 +43,23 @@ namespace CryptocurrencyQuote.Infrastructure
                     {
                         result.Add(new ExchangeRateDTO() { Currency = new CurrencyDTO() { IsCrypto = false, Symbol = key }, Price = ratesDictionary[key] });
                     }
-                 }
+                }
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                var exchangeRateError = JsonConvert.DeserializeObject<ExchangeRateError>((response.Content ?? "").ToString());
+                if (exchangeRateError != null)
+                {
+                    throw new BadRequestException(exchangeRateError.Error.Code, exchangeRateError.Error.Message);
+                }
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.TooManyRequests)
+            {
+                var tooManyRequestsError = JsonConvert.DeserializeObject<ExchangeRateError>((response.Content ?? "").ToString());
+                if (tooManyRequestsError != null)
+                {
+                    throw new TooManyRequestsException(tooManyRequestsError.Error.Message);
+                }
             }
             return result;
         }
