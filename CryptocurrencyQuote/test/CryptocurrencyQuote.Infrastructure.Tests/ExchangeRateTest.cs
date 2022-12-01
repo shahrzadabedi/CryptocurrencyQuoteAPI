@@ -4,6 +4,7 @@ using FluentAssertions;
 using System;
 using CryptocurrencyQuote.Domain.Model.Exceptions;
 using CryptocurrencyQuote.Infrastructure.ExchangeRates;
+using System.Linq;
 
 namespace CryptocurrencyQuote.Infrastructure.Tests
 {
@@ -44,6 +45,7 @@ namespace CryptocurrencyQuote.Infrastructure.Tests
             await Assert.ThrowsAsync<BadRequestException>(() => api.GetQuotes(new Domain.Model.CurrencyDTO() { Symbol = symbol }, toCurrencies));
 
         }
+        
         [Theory]
         [InlineData("TTT")]
         public async void GetQuotes_From_BTC_To_NotExistingSymbol_Throws(string symbol)
@@ -58,7 +60,22 @@ namespace CryptocurrencyQuote.Infrastructure.Tests
             await Assert.ThrowsAsync<BadRequestException>(() => api.GetQuotes(new Domain.Model.CurrencyDTO() { Symbol = "BTC" }, toCurrencies));
 
         }
+        
+        [Theory]
+        [InlineData("TTT,USD,EUR")]
+        public async void GetQuotes_From_BTC_To_MixedOfExistingAndNotExistingSymbol_Throws(string toCurrenciesString)
+        {
+            //Arrange
+            var api = new ExchangeRatesAPI(new MockExchangeRateAPIConfig());
+            var toCurrencies = toCurrenciesString.Split(',').Select(p => new Domain.Model.CurrencyDTO() { Symbol = p }).ToList();
 
+            //Act
+            var quotes = await api.GetQuotes(new Domain.Model.CurrencyDTO() { Symbol = "BTC" }, toCurrencies);
+
+            //Assert
+           quotes.Count.Should().Be(2);
+
+        }
 
     }
 }
