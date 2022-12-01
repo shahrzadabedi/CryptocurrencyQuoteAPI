@@ -17,14 +17,14 @@ namespace CryptocurrencyQuote.Infrastructure.Tests
             //Arrange
             var api = new ExchangeRatesAPI(new MockExchangeRateAPIConfig());
             var toCurrencies = new List<Domain.Model.CurrencyDTO>() {
-                new Domain.Model.CurrencyDTO() { IsCrypto= false,Symbol= "USD"} ,
-                new Domain.Model.CurrencyDTO { IsCrypto= false,Symbol="EUR"},
-                new Domain.Model.CurrencyDTO() {IsCrypto= false, Symbol="GBP"},
-                new Domain.Model.CurrencyDTO(){IsCrypto= false,Symbol="AUD"},
-                new Domain.Model.CurrencyDTO(){IsCrypto=! false,Symbol="BRL"}
+                new Domain.Model.CurrencyDTO() {Symbol= "USD"} ,
+                new Domain.Model.CurrencyDTO { Symbol="EUR"},
+                new Domain.Model.CurrencyDTO() { Symbol="GBP"},
+                new Domain.Model.CurrencyDTO(){Symbol="AUD"},
+                new Domain.Model.CurrencyDTO(){Symbol="BRL"}
             };
             //Act
-            var quotes = await api.GetQuotes(new Domain.Model.CurrencyDTO() { IsCrypto = true, Symbol = symbol },toCurrencies);
+            var quotes = await api.GetQuotes(new Domain.Model.CurrencyDTO() {  Symbol = symbol },toCurrencies);
             
             //Assert
             quotes.Count.Should().Equals(toCurrencies.Count);
@@ -40,12 +40,14 @@ namespace CryptocurrencyQuote.Infrastructure.Tests
             //Arrange
             var api = new ExchangeRatesAPI(new MockExchangeRateAPIConfig());
             var toCurrencies = new List<Domain.Model.CurrencyDTO>() {
-                new Domain.Model.CurrencyDTO() { IsCrypto= false,Symbol= "USD"} ,
+                new Domain.Model.CurrencyDTO() { Symbol= "USD"} ,
             };
             //Act and Assert
-            await Assert.ThrowsAsync<BadRequestException>(() =>  api.GetQuotes(new Domain.Model.CurrencyDTO() { IsCrypto = true, Symbol = symbol }, toCurrencies));
+            await Assert.ThrowsAsync<BadRequestException>(() =>  api.GetQuotes(new Domain.Model.CurrencyDTO() { Symbol = symbol }, toCurrencies));
 
         }
+
+        
 
 
     }

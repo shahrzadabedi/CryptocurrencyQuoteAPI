@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CryptocurrencyQuote.Domain.Model
 {
-    public class CurrencyDTO
+    public class CurrencyDTO : Resource
     {
         public string Symbol { get; set; }
-        public bool IsCrypto { get; set; }
+        public string Description { get; set; }
     }
 }

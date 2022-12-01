@@ -9,5 +9,10 @@ namespace CryptocurrencyQuote.Infrastructure
         {
             throw new NotImplementedException();
         }
+
+        public Task<List<CurrencyDTO>> GetSymbols()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -41,7 +41,51 @@ namespace CryptocurrencyQuote.Infrastructure
                     var keys = ratesDictionary.Keys;
                     foreach (var key in keys)
                     {
-                        result.Add(new ExchangeRateDTO() { Currency = new CurrencyDTO() { IsCrypto = false, Symbol = key }, Price = ratesDictionary[key] });
+                        result.Add(new ExchangeRateDTO() { Currency = new CurrencyDTO() { Symbol = key }, Price = ratesDictionary[key] });
+                    }
+                }
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                var exchangeRateError = JsonConvert.DeserializeObject<ExchangeRateError>((response.Content ?? "").ToString());
+                if (exchangeRateError != null)
+                {
+                    throw new BadRequestException(exchangeRateError.Error.Code, exchangeRateError.Error.Message);
+                }
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.TooManyRequests)
+            {
+                var tooManyRequestsError = JsonConvert.DeserializeObject<ExchangeRateError>((response.Content ?? "").ToString());
+                if (tooManyRequestsError != null)
+                {
+                    throw new TooManyRequestsException(tooManyRequestsError.Error.Message);
+                }
+            }
+            return result;
+        }
+        public async Task<List<CurrencyDTO>> GetSymbols()
+        {
+            var baseUrl = _configuration.Get().BaseUrl;
+            var apiKey = _configuration.Get().APIKey;
+            var client = new RestClient();
+            List<CurrencyDTO> result = new List<CurrencyDTO>();
+
+            var request = new RestRequest(String.Format("{0}/symbols",
+                                   baseUrl), Method.Get);
+            request.AddHeader("apikey", apiKey);
+
+            RestResponse response = (await client.ExecuteAsync(request));
+            if (response.IsSuccessStatusCode)
+            {
+                var responseDto = JsonConvert.DeserializeObject<SymbolsResponse>((response.Content ?? "").ToString());
+
+                if (responseDto != null)
+                {
+                    var ratesDictionary = responseDto.Symbols;
+                    var keys = ratesDictionary.Keys;
+                    foreach (var key in keys)
+                    {
+                        result.Add(new CurrencyDTO(){ Symbol=key ,Description = ratesDictionary[key]});
                     }
                 }
             }
