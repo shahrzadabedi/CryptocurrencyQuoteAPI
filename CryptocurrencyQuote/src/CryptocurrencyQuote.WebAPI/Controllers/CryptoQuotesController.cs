@@ -1,5 +1,6 @@
 ﻿using CryptocurrencyQuote.Domain;
 using CryptocurrencyQuote.Domain.Model;
+using CryptocurrencyQuote.WebAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +26,8 @@ namespace CryptocurrencyQuote.WebAPI.Controllers
                 var toCurrenciesDto = toCurrencies.Split(',').Select(c => new CurrencyDTO() { Symbol = c }).ToList();
                 var quotes = await api.GetQuotes(new CurrencyDTO() { Symbol = fromCurrency }, toCurrenciesDto);
                 quotes.ForEach(p => p.Href = Url.Link(nameof(GetQuotes), new { fromCurrency, toCurrencies }));
-                return Ok(quotes);
+                var response = new ListResponse<ExchangeRateDTO>() { Data = quotes, Success = true };
+                return Ok(response);
             }
             catch (Exception ex)
             {

@@ -1,4 +1,6 @@
 ﻿using CryptocurrencyQuote.Domain;
+using CryptocurrencyQuote.Domain.Model;
+using CryptocurrencyQuote.WebAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +23,8 @@ namespace CryptocurrencyQuote.WebAPI.Controllers
             {
                 var symbols = await api.GetSymbols();
                 symbols.ForEach(p => p.Href = Url.Link(nameof(GetSymbols),null));
-                return Ok(symbols);
+                var response = new ListResponse<CurrencyDTO>() { Data = symbols, Success = true };
+                return Ok(response);
             }
             catch (Exception ex)
             {

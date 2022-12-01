@@ -1,5 +1,6 @@
 using CryptocurrencyQuote.Domain;
 using CryptocurrencyQuote.Infrastructure;
+using CryptocurrencyQuote.Infrastructure.ExchangeRates;
 using CryptocurrencyQuote.WebAPI.Filters;
 using System.Net;
 

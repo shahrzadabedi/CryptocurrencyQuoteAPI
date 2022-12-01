@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CryptocurrencyQuote.Infrastructure
+namespace CryptocurrencyQuote.Infrastructure.ExchangeRates
 {
 
 

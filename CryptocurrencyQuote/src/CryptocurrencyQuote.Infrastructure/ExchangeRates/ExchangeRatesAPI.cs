@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using CryptocurrencyQuote.Domain.Model.Exceptions;
 
-namespace CryptocurrencyQuote.Infrastructure
+namespace CryptocurrencyQuote.Infrastructure.ExchangeRates
 {
     public class ExchangeRatesAPI : ICryptocurrencyAPI
     {

@@ -1,4 +1,4 @@
-﻿namespace CryptocurrencyQuote.Infrastructure
+﻿namespace CryptocurrencyQuote.Infrastructure.ExchangeRates
 {
     public class SymbolsResponse
     {
