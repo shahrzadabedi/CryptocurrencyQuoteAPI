@@ -21,8 +21,9 @@ namespace CryptocurrencyQuote.Infrastructure.ExchangeRates
         }
         public async Task<List<ExchangeRateDTO>> GetQuotesAsync(CurrencyDTO fromCurrency, List<CurrencyDTO> toCurrencies)
         {
-            var baseUrl = _configuration.Get().BaseUrl;
-            var apiKey = _configuration.Get().APIKey;
+            var configuration = _configuration.Get();
+            var baseUrl = configuration.BaseUrl;
+            var apiKey = configuration.APIKey;
             var client = new RestClient();
             List<ExchangeRateDTO> result = new List<ExchangeRateDTO>();
             string toCurrencySymbols = toCurrencies.Any()? toCurrencies.Select(x => x.Symbol).ToList().Aggregate((a, b) => a + "," + b):"";
@@ -73,8 +74,9 @@ namespace CryptocurrencyQuote.Infrastructure.ExchangeRates
         }
         public async Task<List<CurrencyDTO>> GetSymbolsAsync()
         {
-            var baseUrl = _configuration.Get().BaseUrl;
-            var apiKey = _configuration.Get().APIKey;
+            var configuration = _configuration.Get();
+            var baseUrl = configuration.BaseUrl;
+            var apiKey = configuration.APIKey;
             var client = new RestClient();
             List<CurrencyDTO> result = new List<CurrencyDTO>();
 
