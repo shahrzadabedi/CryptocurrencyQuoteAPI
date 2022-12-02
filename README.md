@@ -12,4 +12,6 @@ and CryptocurrencyQuote.WebAPI.
 3-I have added the ability to use both 
   • https://exchangeratesapi.io
   • https://coinmarketcap.com/api (free version) 
-However I only have implemented consuming the first api to get the desired results.
+  However I only have implemented consuming the first api to get the desired results.
+4-I used Ion spec for Restful design
+
