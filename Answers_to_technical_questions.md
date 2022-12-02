@@ -10,6 +10,7 @@ It took me 15 hours.
 	1-If I wanted to spend more time I would implement either a user secret key mechanism or a token exchange mechanism so that the API_Key value 
 	would be ommited from the source code since it is not secure to hard-code the secret keys in application source code. 
 	2-I also would implement the integration test for the CryptocurrencyQuote.WebAPI project 
+	3-I would implement Ion spec more thoroughly
 
 2. What was the most useful feature that was added to the latest version of your language of choice?
 Please include a snippet of code that shows how you've used it.
