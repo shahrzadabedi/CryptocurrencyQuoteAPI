@@ -5,8 +5,9 @@ more time? If you didn't spend much time on the coding assignment then use this 
 explain what you would add.
 
 It took me 15 hours.
-If I wanted to spend more time I would implement either a user secret key mechanism or a token exchange mechanism so that the API_Key value 
-would be ommited from the source code since it is not secure to hard-code the secret keys in application source code.
+	1-If I wanted to spend more time I would implement either a user secret key mechanism or a token exchange mechanism so that the API_Key value 
+	would be ommited from the source code since it is not secure to hard-code the secret keys in application source code. 
+	2-I also would implement the integration test for the CryptocurrencyQuote.WebAPI project 
 
 2. What was the most useful feature that was added to the latest version of your language of choice?
 Please include a snippet of code that shows how you've used it.
@@ -51,15 +52,15 @@ Please include a snippet of code that shows how you've used it.
 4. What was the latest technical book you have read or tech conference you have been to? What did you
 learn?
 
-The latest technical conference title was "Use Composition over inheritance". 
-I learned to minimize using implementaion inheritance and instead use more interface inheritance and
-to consider the future side effects of implementing hirarchical implementation inheritance and instead consider using 
-composition in design.
+	The latest technical conference title was "Use Composition over inheritance". 
+	I learned to minimize using implementaion inheritance and instead use more interface inheritance and
+	to consider the future side effects of implementing hirarchical implementation inheritance and instead consider using 
+	composition in design.
 
 5. What do you think about this technical assessment?
 
-It was a great excercise especially I had the chance to apply my knowledge related to Restful api design in 
-a client library project.
+	It was a great excercise especially I had the chance to apply my knowledge related to Restful api design in 
+	a client library project.
 
 6. Please, describe yourself using JSON
 
