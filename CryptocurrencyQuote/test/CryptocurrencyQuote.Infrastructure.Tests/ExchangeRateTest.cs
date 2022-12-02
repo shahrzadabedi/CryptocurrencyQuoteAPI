@@ -25,7 +25,7 @@ namespace CryptocurrencyQuote.Infrastructure.Tests
                 new Domain.Model.CurrencyDTO(){Symbol="BRL"}
             };
             //Act
-            var quotes = await api.GetQuotes(new Domain.Model.CurrencyDTO() { Symbol = symbol }, toCurrencies);
+            var quotes = await api.GetQuotesAsync(new Domain.Model.CurrencyDTO() { Symbol = symbol }, toCurrencies);
 
             //Assert
             quotes.Count.Should().Be(toCurrencies.Count);
@@ -44,7 +44,7 @@ namespace CryptocurrencyQuote.Infrastructure.Tests
                 new Domain.Model.CurrencyDTO() { Symbol= "USD"} ,
             };
             //Act and Assert
-            await Assert.ThrowsAsync<BadRequestException>(() => api.GetQuotes(new Domain.Model.CurrencyDTO() { Symbol = symbol }, toCurrencies));
+            await Assert.ThrowsAsync<BadRequestException>(() => api.GetQuotesAsync(new Domain.Model.CurrencyDTO() { Symbol = symbol }, toCurrencies));
 
         }
 
@@ -59,7 +59,7 @@ namespace CryptocurrencyQuote.Infrastructure.Tests
             };
 
             //Act and Assert
-            await Assert.ThrowsAsync<BadRequestException>(() => api.GetQuotes(new Domain.Model.CurrencyDTO() { Symbol = "BTC" }, toCurrencies));
+            await Assert.ThrowsAsync<BadRequestException>(() => api.GetQuotesAsync(new Domain.Model.CurrencyDTO() { Symbol = "BTC" }, toCurrencies));
 
         }
 
@@ -72,7 +72,7 @@ namespace CryptocurrencyQuote.Infrastructure.Tests
             var toCurrencies = toCurrenciesString.Split(',').Select(p => new Domain.Model.CurrencyDTO() { Symbol = p }).ToList();
 
             //Act
-            var quotes = await api.GetQuotes(new Domain.Model.CurrencyDTO() { Symbol = "BTC" }, toCurrencies);
+            var quotes = await api.GetQuotesAsync(new Domain.Model.CurrencyDTO() { Symbol = "BTC" }, toCurrencies);
 
             //Assert
             quotes.Count.Should().Be(2);
@@ -90,7 +90,7 @@ namespace CryptocurrencyQuote.Infrastructure.Tests
             var toCurrencies = new List<Domain.Model.CurrencyDTO>();
 
             //Act
-            var quotes = await api.GetQuotes(new Domain.Model.CurrencyDTO() { Symbol = "BTC" }, toCurrencies);
+            var quotes = await api.GetQuotesAsync(new Domain.Model.CurrencyDTO() { Symbol = "BTC" }, toCurrencies);
 
             //Assert
             quotes.Count.Should().BeGreaterThan(2);
@@ -106,7 +106,7 @@ namespace CryptocurrencyQuote.Infrastructure.Tests
             var toCurrencies = new List<Domain.Model.CurrencyDTO>();
 
             //Act
-            var quotes = await api.GetQuotes(null, toCurrencies);
+            var quotes = await api.GetQuotesAsync(null, toCurrencies);
 
             //Assert
             quotes.Count.Should().BeGreaterThan(2);
@@ -129,7 +129,7 @@ namespace CryptocurrencyQuote.Infrastructure.Tests
                 new Domain.Model.CurrencyDTO(){Symbol="BRL"}
             };
             //Act and Assert
-            await Assert.ThrowsAsync<UnauthorizedException>(() => api.GetQuotes(new Domain.Model.CurrencyDTO() { Symbol = symbol }, toCurrencies));
+            await Assert.ThrowsAsync<UnauthorizedException>(() => api.GetQuotesAsync(new Domain.Model.CurrencyDTO() { Symbol = symbol }, toCurrencies));
 
 
         }

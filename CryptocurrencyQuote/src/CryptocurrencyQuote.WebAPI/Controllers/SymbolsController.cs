@@ -15,14 +15,14 @@ namespace CryptocurrencyQuote.WebAPI.Controllers
         {
             api = cryptocurrencyApi;
         }
-        [HttpGet(Name = nameof(GetSymbols))]        
+        [HttpGet(Name = nameof(GetSymbolsAsync))]        
         [ProducesResponseType((int)System.Net.HttpStatusCode.OK)]
-        public async Task<IActionResult> GetSymbols()
+        public async Task<IActionResult> GetSymbolsAsync()
         {
             try
             {
-                var symbols = await api.GetSymbols();
-                symbols.ForEach(p => p.Href = Url.Link(nameof(GetSymbols),null));
+                var symbols = await api.GetSymbolsAsync();
+                symbols.ForEach(p => p.Href = Url.Link(nameof(GetSymbolsAsync),null));
                 var response = new ListResponse<CurrencyDTO>() { Data = symbols, Success = true };
                 return Ok(response);
             }

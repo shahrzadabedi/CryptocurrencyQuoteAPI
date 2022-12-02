@@ -15,12 +15,12 @@ namespace CryptocurrencyQuote.WebAPI.Controllers
                 Href = Url.Link(nameof(GetRoot), null),
                 Symbols = new 
                 {
-                    Href = Url.Link(nameof(SymbolsController.GetSymbols),null)
+                    Href = Url.Link(nameof(SymbolsController.GetSymbolsAsync),null)
                     
                 },
                 CryptoQuotes = new
                 {
-                    Href = Url.Link(nameof(CryptoQuotesController.GetQuotes),null),
+                    Href = Url.Link(nameof(CryptoQuotesController.GetQuotesAsync),null),
                 }
                 
             };

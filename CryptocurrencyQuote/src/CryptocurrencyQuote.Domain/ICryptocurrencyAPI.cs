@@ -5,7 +5,7 @@ namespace CryptocurrencyQuote.Domain
 {
     public interface ICryptocurrencyAPI
     {
-        Task<List<ExchangeRateDTO>> GetQuotes(CurrencyDTO fromCurrency,List<CurrencyDTO> toCurrencies);
-        Task<List<CurrencyDTO>> GetSymbols();
+        Task<List<ExchangeRateDTO>> GetQuotesAsync(CurrencyDTO fromCurrency,List<CurrencyDTO> toCurrencies);
+        Task<List<CurrencyDTO>> GetSymbolsAsync();
     }
 }

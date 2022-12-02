@@ -15,17 +15,17 @@ namespace CryptocurrencyQuote.WebAPI.Controllers
         {
             api = cryptocurrencyApi;
         }
-        [HttpGet(Name = nameof(GetQuotes))]
+        [HttpGet(Name = nameof(GetQuotesAsync))]
         [ProducesResponseType((int)System.Net.HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)System.Net.HttpStatusCode.OK)]
 
-        public async Task<IActionResult> GetQuotes(string fromCurrency, string toCurrencies)
+        public async Task<IActionResult> GetQuotesAsync(string fromCurrency, string toCurrencies)
         {
             try
             {
                 var toCurrenciesDto = toCurrencies.Split(',').Select(c => new CurrencyDTO() { Symbol = c }).ToList();
-                var quotes = await api.GetQuotes(new CurrencyDTO() { Symbol = fromCurrency }, toCurrenciesDto);
-                quotes.ForEach(p => p.Href = Url.Link(nameof(GetQuotes), new { fromCurrency, toCurrencies }));
+                var quotes = await api.GetQuotesAsync(new CurrencyDTO() { Symbol = fromCurrency }, toCurrenciesDto);
+                quotes.ForEach(p => p.Href = Url.Link(nameof(GetQuotesAsync), new { fromCurrency, toCurrencies }));
                 var response = new ListResponse<ExchangeRateDTO>() { Data = quotes, Success = true };
                 return Ok(response);
             }

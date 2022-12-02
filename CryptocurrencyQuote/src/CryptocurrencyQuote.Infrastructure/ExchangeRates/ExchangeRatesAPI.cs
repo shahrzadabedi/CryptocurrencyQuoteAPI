@@ -19,7 +19,7 @@ namespace CryptocurrencyQuote.Infrastructure.ExchangeRates
             this._configuration = configuration;
 
         }
-        public async Task<List<ExchangeRateDTO>> GetQuotes(CurrencyDTO fromCurrency, List<CurrencyDTO> toCurrencies)
+        public async Task<List<ExchangeRateDTO>> GetQuotesAsync(CurrencyDTO fromCurrency, List<CurrencyDTO> toCurrencies)
         {
             var baseUrl = _configuration.Get().BaseUrl;
             var apiKey = _configuration.Get().APIKey;
@@ -71,7 +71,7 @@ namespace CryptocurrencyQuote.Infrastructure.ExchangeRates
             }
             return result;
         }
-        public async Task<List<CurrencyDTO>> GetSymbols()
+        public async Task<List<CurrencyDTO>> GetSymbolsAsync()
         {
             var baseUrl = _configuration.Get().BaseUrl;
             var apiKey = _configuration.Get().APIKey;
