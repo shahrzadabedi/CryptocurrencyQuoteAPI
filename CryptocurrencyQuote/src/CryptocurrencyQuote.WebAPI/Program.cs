@@ -5,7 +5,8 @@ using CryptocurrencyQuote.WebAPI.Filters;
 using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var exchangeRatesApiKey = builder.Configuration["ExchangeRates:API_KEY"];
+var coinMarketCapApiKey = builder.Configuration["CoinMarketCap:API_KEY"];
 // Add services to the container.
 
 builder.Services.AddControllers(options => { options.Filters.Add<RequireHttpsOrCloseAttribute>(); }) ;

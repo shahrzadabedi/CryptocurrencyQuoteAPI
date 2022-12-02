@@ -22,8 +22,12 @@ namespace CryptocurrencyQuote.Infrastructure.ExchangeRates
             var configList = _configuration.GetSection("CryptocurrencyAPIList")
                 .Get<List<CryptocurrencyAPIConfig>>()
                 .ToList();
-            return configList.Any()?configList.FirstOrDefault(p => p.Name == "ExchangeRates"):null;
-
+            var exchangeRateAPIConfig =  configList.Any()?configList.FirstOrDefault(p => p.Name == "ExchangeRates"):null;
+            if (exchangeRateAPIConfig != null)
+            {
+                exchangeRateAPIConfig.APIKey = _configuration.GetSection("ExchangeRates:API_KEY").Value;
+            }
+            return exchangeRateAPIConfig;
         }
     }
 }
