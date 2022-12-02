@@ -13,7 +13,7 @@ Please include a snippet of code that shows how you've used it.
 
 .NET 7 was released in November 2022 and it has introduced different new features. One of the most commonly used features is:
 
-	1-Use LinQ Order instead of OrderBy using lambda expression:You have the ability to simply call Order() instead of OrderBy(p=>p.ID) for a 
+	Use LinQ Order instead of OrderBy using lambda expression:You have the ability to simply call Order() instead of OrderBy(p=>p.ID) for a 
 	simple entity for example:
 
 	List<int> ages = new List<int>();
@@ -67,7 +67,7 @@ a client library project.
    "name":"Shahrzad",
    "family":"Abedi",
    "age":34,
-   "gender":"Female",
+   "gender":"female",
    "hobbies":[
       "Reading about new technology trends through youtube or other social media",
       "Going out and having fun with my friends"
