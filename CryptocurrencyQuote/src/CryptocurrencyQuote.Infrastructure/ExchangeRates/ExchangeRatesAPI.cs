@@ -25,9 +25,9 @@ namespace CryptocurrencyQuote.Infrastructure.ExchangeRates
             var apiKey = _configuration.Get().APIKey;
             var client = new RestClient();
             List<ExchangeRateDTO> result = new List<ExchangeRateDTO>();
-            string fromCurrencySymbols = toCurrencies.Select(x => x.Symbol).ToList().Aggregate((a, b) => a + "," + b);
+            string toCurrencySymbols = toCurrencies.Any()? toCurrencies.Select(x => x.Symbol).ToList().Aggregate((a, b) => a + "," + b):"";
             var request = new RestRequest(String.Format("{0}/latest?symbols={1}&base={2}",
-                                   baseUrl, fromCurrencySymbols, fromCurrency.Symbol), Method.Get);
+                                   baseUrl, toCurrencySymbols, fromCurrency?.Symbol), Method.Get);
             request.AddHeader("apikey", apiKey);
 
             RestResponse response = (await client.ExecuteAsync(request));
@@ -60,6 +60,14 @@ namespace CryptocurrencyQuote.Infrastructure.ExchangeRates
                 {
                     throw new TooManyRequestsException(tooManyRequestsError.Error.Message);
                 }
+            }else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                var exchangeRateError = JsonConvert.DeserializeObject<UnauthorizedRequestError>((response.Content ?? "").ToString());
+                if (exchangeRateError != null)
+                {
+                    throw new UnauthorizedException(exchangeRateError.Message);
+                }
+
             }
             return result;
         }

@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace CryptocurrencyQuote.Infrastructure.ExchangeRates
 {
-
-
     public class LatestExchangeRateResponse
     {
         public string Base { get; set; }
@@ -30,6 +28,11 @@ namespace CryptocurrencyQuote.Infrastructure.ExchangeRates
     }
 
     public class TooManyRequestsError
+    {
+        public string Message { get; set; }
+    }
+
+    public class UnauthorizedRequestError
     {
         public string Message { get; set; }
     }
