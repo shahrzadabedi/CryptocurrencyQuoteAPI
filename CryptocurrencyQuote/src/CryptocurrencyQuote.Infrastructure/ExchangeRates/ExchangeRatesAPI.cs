@@ -56,10 +56,10 @@ namespace CryptocurrencyQuote.Infrastructure.ExchangeRates
             }
             else if (response.StatusCode == System.Net.HttpStatusCode.TooManyRequests)
             {
-                var tooManyRequestsError = JsonConvert.DeserializeObject<ExchangeRateError>((response.Content ?? "").ToString());
+                var tooManyRequestsError = JsonConvert.DeserializeObject<TooManyRequestsError>((response.Content ?? "").ToString());
                 if (tooManyRequestsError != null)
                 {
-                    throw new TooManyRequestsException(tooManyRequestsError.Error.Message);
+                    throw new TooManyRequestsException(tooManyRequestsError.Message);
                 }
             }else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
