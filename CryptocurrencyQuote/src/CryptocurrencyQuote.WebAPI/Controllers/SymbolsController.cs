@@ -28,7 +28,8 @@ namespace CryptocurrencyQuote.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message); ;
+                return StatusCode((int)((StatusCodeHelper)ex).statusCode, ex.Message);
+
             }
 
         }

@@ -9,8 +9,7 @@ namespace CryptocurrencyQuote.WebAPI
             StatusCodeHelper result = new StatusCodeHelper();
             switch (exception)
             {
-                case BadRequestException:
-                    
+                case BadRequestException:                    
                     result.statusCode= System.Net.HttpStatusCode.BadRequest;
                     break;
                
