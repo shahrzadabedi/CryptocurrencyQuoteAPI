@@ -9,10 +9,10 @@ namespace CryptocurrencyQuote.Domain.Model.Exceptions
     public class BadRequestException : Exception
     {
         private string _code;
-        private System.Net.HttpStatusCode _statusCode;
+        public System.Net.HttpStatusCode statusCode { get; private set; }
         public BadRequestException(string code, string message) : base(message) {
             this._code = code;
-            _statusCode = System.Net.HttpStatusCode.BadRequest;
+            statusCode = System.Net.HttpStatusCode.BadRequest;
         }
     }
 

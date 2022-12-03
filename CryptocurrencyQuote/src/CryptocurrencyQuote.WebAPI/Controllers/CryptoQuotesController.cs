@@ -20,6 +20,7 @@ namespace CryptocurrencyQuote.WebAPI.Controllers
         [ProducesResponseType((int)System.Net.HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)System.Net.HttpStatusCode.OK)]
         [ProducesResponseType((int)System.Net.HttpStatusCode.TooManyRequests)]
+        [ProducesResponseType((int)System.Net.HttpStatusCode.Unauthorized)]
 
         public async Task<IActionResult> GetQuotesAsync(string fromCurrency, string toCurrencies)
         {
@@ -38,6 +39,10 @@ namespace CryptocurrencyQuote.WebAPI.Controllers
             catch(TooManyRequestsException ex)
             {
                 return StatusCode((int)ex.statusCode, ex.Message); ;
+            }
+            catch (UnauthorizedException ex)
+            {
+                return Unauthorized(ex.Message);
             }
             catch (Exception ex)
             {

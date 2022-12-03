@@ -8,9 +8,9 @@ namespace CryptocurrencyQuote.Domain.Model.Exceptions
 {
     public class UnauthorizedException : Exception
     {
-        private System.Net.HttpStatusCode _statusCode;
+        public System.Net.HttpStatusCode statusCode { get; private set; }
         public UnauthorizedException(string message) : base(message) {
-            _statusCode = System.Net.HttpStatusCode.Unauthorized;
+            statusCode = System.Net.HttpStatusCode.Unauthorized;
         }
         
     }
