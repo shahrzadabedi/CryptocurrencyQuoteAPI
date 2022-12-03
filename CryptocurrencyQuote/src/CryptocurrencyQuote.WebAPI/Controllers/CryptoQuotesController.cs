@@ -1,8 +1,6 @@
 ﻿using CryptocurrencyQuote.Domain;
 using CryptocurrencyQuote.Domain.Model;
-using CryptocurrencyQuote.Domain.Model.Exceptions;
 using CryptocurrencyQuote.WebAPI.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CryptocurrencyQuote.WebAPI.Controllers
@@ -32,24 +30,14 @@ namespace CryptocurrencyQuote.WebAPI.Controllers
                 var response = new ListResponse<ExchangeRateDTO>() { Data = quotes, Success = true };
                 return Ok(response);
             }
-            catch(BadRequestException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch(TooManyRequestsException ex)
-            {
-                return StatusCode((int)ex.statusCode, ex.Message); ;
-            }
-            catch (UnauthorizedException ex)
-            {
-                return Unauthorized(ex.Message);
-            }
             catch (Exception ex)
             {
-                return StatusCode((int)System.Net.HttpStatusCode.InternalServerError, ex.Message); ;
+                return StatusCode((int)((StatusCodeHelper)ex).statusCode, ex.Message);
+                    
             }
             
         }
+
 
         
     }
