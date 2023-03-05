@@ -1,8 +1,6 @@
 using CryptocurrencyQuote.Domain;
-using CryptocurrencyQuote.Infrastructure;
 using CryptocurrencyQuote.Infrastructure.ExchangeRates;
 using CryptocurrencyQuote.WebAPI.Filters;
-using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 var exchangeRatesApiKey = builder.Configuration["ExchangeRates:API_KEY"];
