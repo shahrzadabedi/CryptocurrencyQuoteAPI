@@ -16,7 +16,7 @@ It took me 7 hours.
 Please include a snippet of code that shows how you've used it.
 
 .NET 7 was released in November 2022 and it has introduced different new features. One of the features introduced in .NET 7 was build-in rate-limiting middleware. We can install System.Threading.RateLimiting to have access to it.
-Before that we had to install third-party libraries to be able to rate-limit our endpoints. To rate-limit an existing endpoint we need to first add RateLimiter to the IServiceCollection and add the RateLimiter middleware. For example here we use basic Fixed-window rate-limiting algorithm and configure that in our Program.cs file:
+Before that we had to install third-party libraries to be able to rate-limit our endpoints. To rate-limit an existing endpoint we need to first add RateLimiter to the IServiceCollection and add the RateLimiter middleware to the pipleline. For example here we use basic Fixed-window rate-limiting algorithm and configure that in our Program.cs file:
 	
  	builder.Services.AddRateLimiter(_ => _
 	    .AddFixedWindowLimiter("fixed", options =>
@@ -72,7 +72,7 @@ Then, we decorate our controller class with [EnableRateLimiting("fixed")] attrib
 	What you should do generally is to track the log records to spot where the performance issue arises. After That you can go deeper and if 
 	the performance issue is with an external api call, ask for support of the api providers wherever they are and if it is something internal
 	you should go deeper to spot the performance problem for example it might be that you are performing a query on a table with lots of
-	columns and returing all thos columns in your select part where you actually don't need those columns.
+	columns and returing all those columns in your select part where you actually don't need those columns.
 	So you may need to do some query optimizations to solve the performance issue.
 
 4. What was the latest technical book you have read or tech conference you have been to? What did you
@@ -84,23 +84,33 @@ learn?
 	composition in design.
 
 5. What do you think about this technical assessment?
+	It was my second time to do this excercise. I did a lot of refactoring to make the code cleaner and enhance its readability and maintainability.
+	I also added CryptocurrencyQuote.Application layer to it and implemented CQRS using MediatR. I moved ICryptocurrencyAPI to infrastructure layer and also 	moved the Dtos in its method to infrastructure as well because these Dtos and the method deals with external api and it shouldn't be placed in Domain 		layer.
+	It was a great excercise especially refactoring my code and refining the project architecture was good.
 
-	It was a great excercise especially I had the chance to apply my knowledge related to Restful api design in 
-	a client library project.
-
-6. Please, describe yourself using JSON
+7. Please, describe yourself using JSON
 
 {
    "name":"Shahrzad",
    "family":"Abedi",
-   "age":34,
-   "gender":"female",
-   "hobbies":[
-      "Reading about new technology trends through youtube or other social media",
-      "Going out and having fun with my friends"
+   "age":35,
+   "interests":[
+   	"Learning",
+    	"Building",
+     	"Exploring",
+        "Thinking",
+   	"Technology",
+    	"Science",
+      	"Psychology",
+        "Personal Development",
+	"Nature",
+	"Cats",
+ 	"Dogs"
    ],
+   "gender":"female",
    "sports":[
-      "Taichi"
+      "Taichi",
+      "Swimming"
    ],
    "programmingLanguage":{
       "backend":[
