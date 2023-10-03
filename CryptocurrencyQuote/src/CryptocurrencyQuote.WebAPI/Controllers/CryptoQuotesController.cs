@@ -7,8 +7,11 @@ namespace CryptocurrencyQuote.WebAPI.Controllers;
 
 public class CryptoQuotesController : BaseController
 {
-    [HttpGet(Name = nameof(Get))]
-
+    [HttpGet]
+    [ProducesResponseType((int)System.Net.HttpStatusCode.BadRequest)]
+    [ProducesResponseType((int)System.Net.HttpStatusCode.OK)]
+    [ProducesResponseType((int)System.Net.HttpStatusCode.TooManyRequests)]
+    [ProducesResponseType((int)System.Net.HttpStatusCode.Unauthorized)]
     public async Task<ActionResult<List<GetCryptoQuotesListResponse>>> Get([FromQuery] string fromCurrency,
         string toCurrencies)
     {
