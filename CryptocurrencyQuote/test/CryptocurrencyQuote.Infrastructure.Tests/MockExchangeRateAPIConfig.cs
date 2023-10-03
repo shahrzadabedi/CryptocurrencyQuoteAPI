@@ -12,7 +12,6 @@ public class MockExchangeRateAPIConfig : IConfigurationAPI
                 BaseUrl = "https://api.apilayer.com/exchangerates_data",
                 APIKey = "V7iXzah9qrNfseBoDfEaUVdKR5DU2tAJ",
                 Name = "ExchangeRates"
-
             };
     }
 }

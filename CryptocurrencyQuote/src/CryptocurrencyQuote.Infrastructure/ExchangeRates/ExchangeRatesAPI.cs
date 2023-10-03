@@ -1,5 +1,4 @@
-﻿using CryptocurrencyQuote.Domain;
-using RestSharp;
+﻿using RestSharp;
 using Newtonsoft.Json;
 using CryptocurrencyQuote.Domain.Model.Exceptions;
 using CryptocurrencyQuote.Infrastructure.Models;

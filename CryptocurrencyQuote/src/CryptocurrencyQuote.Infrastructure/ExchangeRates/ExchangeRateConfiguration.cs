@@ -9,7 +9,7 @@ public class ExchangeRateConfiguration : IConfigurationAPI
     private IConfiguration _configuration;
     public ExchangeRateConfiguration(IConfiguration configuration)
     {
-        this._configuration = configuration;
+        _configuration = configuration;
     }
     public CryptocurrencyAPIConfig Get()
     {

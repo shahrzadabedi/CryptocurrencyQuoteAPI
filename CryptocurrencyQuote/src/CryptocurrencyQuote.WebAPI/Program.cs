@@ -1,6 +1,5 @@
 using CryptocurrencyQuote.Application.CryptoQuote.MappingProfile;
 using CryptocurrencyQuote.Application.Models;
-using CryptocurrencyQuote.Domain;
 using CryptocurrencyQuote.Infrastructure;
 using CryptocurrencyQuote.Infrastructure.ExchangeRates;
 using CryptocurrencyQuote.WebAPI.Filters;
@@ -14,7 +13,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IConfigurationAPI, ExchangeRateConfiguration>();
 builder.Services.AddAutoMapper(typeof(CryptoQuoteMappingProfile));
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Resource).Assembly));
-builder.Services.AddScoped<CryptocurrencyQuote.Infrastructure.ICryptocurrencyAPI, ExchangeRatesAPI>();
+builder.Services.AddScoped<ICryptocurrencyAPI, ExchangeRatesAPI>();
 
 var app = builder.Build();
 
