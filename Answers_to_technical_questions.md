@@ -6,7 +6,7 @@ Questions:
 more time? If you didn't spend much time on the coding assignment then use this as an opportunity to
 explain what you would add.
 
-It took me 15 hours.
+It took me 7 hours.
 	1-If I wanted to spend more time I would implement either a user secret key mechanism or a token exchange mechanism so that the API_Key value 
 	would be ommited from the source code since it is not secure to hard-code the secret keys in application source code. 
 	2-I also would implement the integration test for the CryptocurrencyQuote.WebAPI project 
@@ -17,30 +17,54 @@ Please include a snippet of code that shows how you've used it.
 
 .NET 7 was released in November 2022 and it has introduced different new features. One of the most commonly used features is:
 
-	Use LinQ Order instead of OrderBy using lambda expression:You have the ability to simply call Order() instead of OrderBy(p=>p.ID) for a 
-	simple entity for example:
-
-	List<int> ages = new List<int>();
-	var orderedAges = ages.Order();
-
-	Or if you have an entity that implements IComparable interface you can also again use Order(). For example:
-
-	public class Person:IComparable<Person> {
-		public string Name{get;set;}
-		public string Age {get;set;}
-		public int CompareTo(Person other)
-		 {
-			 return this.Age== other.Age ? 0:(this.Age < other.Age? -1 : 1);
-		 }
+	One of the features introduced in .NET 7 was build-in rate-limiting middleware. We can install System.Threading.RateLimiting to have access to it. Before 	that we had to install third-party libraries to be able to rate-limit our endpoints. To rate-limit an existing endpoint we need to first add RateLimiter to 	the IServiceCollection and add the RateLimiter middleware. For example here we use basic Fixed-window rate-limiting algorithm and configure that in our 	Program.cs file:
+	
+ 	builder.Services.AddRateLimiter(_ => _
+	    .AddFixedWindowLimiter("fixed", options =>
+	    {
+	        options.PermitLimit = 2;
+	        options.Window = TimeSpan.FromSeconds(12);
+	        options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+	        options.QueueLimit = 2;
+	    }));
+	var app = builder.Build();
+	
+	if (app.Environment.IsDevelopment())
+	{
+	
+	    app.UseSwagger();
+	    app.UseSwaggerUI();
 	}
-	Now in your client code you can write:
+	app.UseRateLimiter();
+ 	Then, we decorate our controller class with [EnableRateLimiting("fixed")] attribute to indicate that we want all the endpoints in this Controller to be 	rate-limited with policy name "fixed" that we already defined:
 
-	List<Person> poeple = new Lis<Person>();
-	var newOrdered = poeple.Order();
-
-	Instead of old one:
-	var oldOrdered = poeple.OrderBy(p=> p.Age);
-
+	[EnableRateLimiting("fixed")]
+	public class CryptoQuotesController : BaseController
+	{
+	    [HttpGet(Name = nameof(Get))]
+	
+	    public async Task<ActionResult<List<GetCryptoQuotesListResponse>>> Get([FromQuery] string fromCurrency,
+	        string toCurrencies)
+	    {
+	        try
+	        {
+	            var toCurrenciesList = toCurrencies?.Split(',').ToList();
+	
+	            var query = new GetCryotoQuotesQuery(fromCurrency, toCurrenciesList);
+	
+	            var result = await Mediator.Send(query);
+	
+	            if (result.Data != null)
+	                MakeUrlLink(result.Data, fromCurrency);
+	
+	            return result.ToActionResult();
+	        }
+	        catch (Exception ex)
+	        {
+	            return StatusCode((int)((StatusCodeHelper)ex).statusCode, ex.Message);                 
+	        }            
+	    } 
+	}
 3. How would you track down a performance issue in production? Have you ever had to do this?
 	
 	Yes, I have experienced that. When you are experiencing performance issues you should investigate some internal or external dependecies 
