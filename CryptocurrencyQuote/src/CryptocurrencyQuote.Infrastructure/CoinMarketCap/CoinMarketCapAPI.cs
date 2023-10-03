@@ -1,18 +1,11 @@
-﻿using CryptocurrencyQuote.Domain;
-using CryptocurrencyQuote.Domain.Model;
+﻿using CryptocurrencyQuote.Infrastructure.Models;
 
-namespace CryptocurrencyQuote.Infrastructure
+namespace CryptocurrencyQuote.Infrastructure;
+
+public class CoinMarketCapAPI : ICryptocurrencyAPI
 {
-    public class CoinMarketCapAPI : ICryptocurrencyAPI
+    public Task<List<ExchangeRateDto>> GetQuotesAsync(CurrencyDto fromCurrency, List<CurrencyDto> toCurrencies)
     {
-        public Task<List<ExchangeRateDTO>> GetQuotesAsync(CurrencyDTO fromCurrency, List<CurrencyDTO> toCurrencies)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<CurrencyDTO>> GetSymbolsAsync()
-        {
-            throw new NotImplementedException();
-        }
+        throw new NotImplementedException();
     }
 }

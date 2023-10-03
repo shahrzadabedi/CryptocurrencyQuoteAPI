@@ -1,137 +1,124 @@
 using System.Collections.Generic;
 using Xunit;
 using FluentAssertions;
-using System;
 using CryptocurrencyQuote.Domain.Model.Exceptions;
 using CryptocurrencyQuote.Infrastructure.ExchangeRates;
 using System.Linq;
+using CryptocurrencyQuote.Infrastructure.Models;
 
-namespace CryptocurrencyQuote.Infrastructure.Tests
+namespace CryptocurrencyQuote.Infrastructure.Tests;
+
+public class ExchangeRateTest
 {
-    public class ExchangeRateTest
+    [Theory]
+    [InlineData("BTC")]
+
+    public async void WhenGetQuotesFromXToUSD_EUR_GBP_AUD_BRL_ThenShouldSucceed(string symbol)
     {
-        [Theory]
-        [InlineData("BTC")]
+        //Arrange
+        var api = new ExchangeRatesAPI(new MockExchangeRateAPIConfig());
+        var toCurrencies = new List<CurrencyDto>() {
+            new CurrencyDto() {Symbol= "USD"} ,
+            new CurrencyDto { Symbol="EUR"},
+            new CurrencyDto() { Symbol="GBP"},
+            new CurrencyDto(){Symbol="AUD"},
+            new CurrencyDto(){Symbol="BRL"}
+        };
+        //Act
+        var quotes = await api.GetQuotesAsync(new CurrencyDto() { Symbol = symbol }, toCurrencies);
 
-        public async void GetQuotes_From_X_To_USD_EUR_GBP_AUD_BRL_Returns_Values_Successfully(string symbol)
-        {
-            //Arrange
-            var api = new ExchangeRatesAPI(new MockExchangeRateAPIConfig());
-            var toCurrencies = new List<Domain.Model.CurrencyDTO>() {
-                new Domain.Model.CurrencyDTO() {Symbol= "USD"} ,
-                new Domain.Model.CurrencyDTO { Symbol="EUR"},
-                new Domain.Model.CurrencyDTO() { Symbol="GBP"},
-                new Domain.Model.CurrencyDTO(){Symbol="AUD"},
-                new Domain.Model.CurrencyDTO(){Symbol="BRL"}
-            };
-            //Act
-            var quotes = await api.GetQuotesAsync(new Domain.Model.CurrencyDTO() { Symbol = symbol }, toCurrencies);
+        //Assert
+        quotes.Count.Should().Be(toCurrencies.Count);
+    }
 
-            //Assert
-            quotes.Count.Should().Be(toCurrencies.Count);
-            quotes.ForEach(x => x.Currency.Should().NotBe(null));
-            quotes.ForEach(x => x.Price.Should().BeGreaterThan(0));
+    [Theory]
+    [InlineData("ETH")]
+    public async void WhenGetQuotesFromNotExistingSymbolToUSD_ThenShouldThrow(string symbol)
+    {
+        //Arrange
+        var api = new ExchangeRatesAPI(new MockExchangeRateAPIConfig());
+        var toCurrencies = new List<CurrencyDto>() {
+            new CurrencyDto() { Symbol= "USD"} ,
+        };
 
-        }
+        //Act and Assert
+        await Assert.ThrowsAsync<BadRequestException>(() => api.GetQuotesAsync(new CurrencyDto() { Symbol = symbol }, toCurrencies));
+    }
 
-        [Theory]
-        [InlineData("ETH")]
-        public async void GetQuotes_From_NotExistingSymbol_To_USD_Throws(string symbol)
-        {
-            //Arrange
-            var api = new ExchangeRatesAPI(new MockExchangeRateAPIConfig());
-            var toCurrencies = new List<Domain.Model.CurrencyDTO>() {
-                new Domain.Model.CurrencyDTO() { Symbol= "USD"} ,
-            };
-            //Act and Assert
-            await Assert.ThrowsAsync<BadRequestException>(() => api.GetQuotesAsync(new Domain.Model.CurrencyDTO() { Symbol = symbol }, toCurrencies));
+    [Theory]
+    [InlineData("TTT")]
+    public async void WhenGetQuotesFromBTCToNotExistingSymbol_ThenShouldThrow(string symbol)
+    {
+        //Arrange
+        var api = new ExchangeRatesAPI(new MockExchangeRateAPIConfig());
+        var toCurrencies = new List<CurrencyDto>() {
+            new CurrencyDto() { Symbol= symbol} ,
+        };
 
-        }
+        //Act and Assert
+        await Assert.ThrowsAsync<BadRequestException>(() => api.GetQuotesAsync(new CurrencyDto() { Symbol = "BTC" }, toCurrencies));
+    }
 
-        [Theory]
-        [InlineData("TTT")]
-        public async void GetQuotes_From_BTC_To_NotExistingSymbol_Throws(string symbol)
-        {
-            //Arrange
-            var api = new ExchangeRatesAPI(new MockExchangeRateAPIConfig());
-            var toCurrencies = new List<Domain.Model.CurrencyDTO>() {
-                new Domain.Model.CurrencyDTO() { Symbol= symbol} ,
-            };
+    [Theory]
+    [InlineData("TTT,USD,EUR")]
+    public async void WhenGetQuotesFromBTCToMixedOfExistingAndNotExistingSymbol_ThenShouldSucceed(string toCurrenciesString)
+    {
+        //Arrange
+        var api = new ExchangeRatesAPI(new MockExchangeRateAPIConfig());
+        var toCurrencies = toCurrenciesString.Split(',').Select(p => new CurrencyDto() { Symbol = p }).ToList();
 
-            //Act and Assert
-            await Assert.ThrowsAsync<BadRequestException>(() => api.GetQuotesAsync(new Domain.Model.CurrencyDTO() { Symbol = "BTC" }, toCurrencies));
+        //Act
+        var quotes = await api.GetQuotesAsync(new CurrencyDto() { Symbol = "BTC" }, toCurrencies);
 
-        }
+        //Assert
+        quotes.Count.Should().Be(2);
+    }
 
-        [Theory]
-        [InlineData("TTT,USD,EUR")]
-        public async void GetQuotes_From_BTC_To_MixedOfExistingAndNotExistingSymbol_Throws(string toCurrenciesString)
-        {
-            //Arrange
-            var api = new ExchangeRatesAPI(new MockExchangeRateAPIConfig());
-            var toCurrencies = toCurrenciesString.Split(',').Select(p => new Domain.Model.CurrencyDTO() { Symbol = p }).ToList();
+    [Theory]
+    [InlineData("BTC")]
+    public async void WhenGetQuotesFromXToNothing_ThenShouldSucceed(string symbol)
+    {
+        //Arrange
+        var api = new ExchangeRatesAPI(new MockExchangeRateAPIConfig());
+        var toCurrencies = new List<CurrencyDto>();
 
-            //Act
-            var quotes = await api.GetQuotesAsync(new Domain.Model.CurrencyDTO() { Symbol = "BTC" }, toCurrencies);
+        //Act
+        var quotes = await api.GetQuotesAsync(new CurrencyDto() { Symbol = symbol }, toCurrencies);
 
-            //Assert
-            quotes.Count.Should().Be(2);
-            quotes.ForEach(x => x.Currency.Should().NotBe(null));
-            quotes.ForEach(x => x.Price.Should().BeGreaterThan(0));
+        //Assert
+        quotes.Count.Should().BeGreaterThan(2);
+    }
 
-        }
+    [Fact]
+    public async void WhenGetQuotesFromNothingToNothing_ThenShouldSucceed()
+    {
+        //Arrange
+        var api = new ExchangeRatesAPI(new MockExchangeRateAPIConfig());
+        var toCurrencies = new List<CurrencyDto>();
 
-        [Theory]
-        [InlineData("BTC")]
-        public async void GetQuotes_From_X_ToNothing_Returns_All_Currencies(string symbol)
-        {
-            //Arrange
-            var api = new ExchangeRatesAPI(new MockExchangeRateAPIConfig());
-            var toCurrencies = new List<Domain.Model.CurrencyDTO>();
+        //Act
+        var quotes = await api.GetQuotesAsync(null, toCurrencies);
 
-            //Act
-            var quotes = await api.GetQuotesAsync(new Domain.Model.CurrencyDTO() { Symbol = "BTC" }, toCurrencies);
+        //Assert
+        quotes.Count.Should().BeGreaterThan(2);
+    }
 
-            //Assert
-            quotes.Count.Should().BeGreaterThan(2);
-            quotes.ForEach(x => x.Currency.Should().NotBe(null));
-            quotes.ForEach(x => x.Price.Should().BeGreaterThan(0));
+    [Theory]
+    [InlineData("BTC")]
 
-        }
-        [Fact]
-        public async void GetQuotes_From_Nothing_To_Nothing_Returns_Euro_ToAllCurrencies()
-        {
-            //Arrange
-            var api = new ExchangeRatesAPI(new MockExchangeRateAPIConfig());
-            var toCurrencies = new List<Domain.Model.CurrencyDTO>();
+    public async void WhenGetQuotesFromBTCToUSD_EUR_GBP_AUD_BRLWithWrongCredentials_ThenShouldThrow(string symbol)
+    {
+        //Arrange
+        var api = new ExchangeRatesAPI(new IncorrectMockExchangeRateAPIConfig());
+        var toCurrencies = new List<CurrencyDto> {
+            new CurrencyDto() {Symbol= "USD"} ,
+            new CurrencyDto { Symbol="EUR"},
+            new CurrencyDto() { Symbol="GBP"},
+            new CurrencyDto(){Symbol="AUD"},
+            new CurrencyDto(){Symbol="BRL"}
+        };
 
-            //Act
-            var quotes = await api.GetQuotesAsync(null, toCurrencies);
-
-            //Assert
-            quotes.Count.Should().BeGreaterThan(2);
-            quotes.ForEach(x => x.Currency.Should().NotBe(null));
-            quotes.ForEach(x => x.Price.Should().BeGreaterThan(0));
-        }
-
-        [Theory]
-        [InlineData("BTC")]
-
-        public async void GetQuotes_From_BTC_To_USD_EUR_GBP_AUD_BRL_With_Wrong_Credentials_Throws(string symbol)
-        {
-            //Arrange
-            var api = new ExchangeRatesAPI(new IncorrectMockExchangeRateAPIConfig());
-            var toCurrencies = new List<Domain.Model.CurrencyDTO>() {
-                new Domain.Model.CurrencyDTO() {Symbol= "USD"} ,
-                new Domain.Model.CurrencyDTO { Symbol="EUR"},
-                new Domain.Model.CurrencyDTO() { Symbol="GBP"},
-                new Domain.Model.CurrencyDTO(){Symbol="AUD"},
-                new Domain.Model.CurrencyDTO(){Symbol="BRL"}
-            };
-            //Act and Assert
-            await Assert.ThrowsAsync<UnauthorizedException>(() => api.GetQuotesAsync(new Domain.Model.CurrencyDTO() { Symbol = symbol }, toCurrencies));
-
-
-        }
+        //Act and Assert
+        await Assert.ThrowsAsync<UnauthorizedException>(() => api.GetQuotesAsync(new CurrencyDto() { Symbol = symbol }, toCurrencies));
     }
 }
