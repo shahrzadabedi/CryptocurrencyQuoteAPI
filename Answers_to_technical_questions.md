@@ -77,7 +77,7 @@ Then, we decorate our controller class with [EnableRateLimiting("fixed")] attrib
 4. What was the latest technical book you have read or tech conference you have been to? What did you
 learn?
 
-It was a Live .NET community Standup about Visual Studio Dev Tunnel. They introduced a new feature in Visual Studio 17.6 that enables ad-hoc connection between machines that cannot directly connect to each other. It creates a URL that allows any device with an internet connection to connect to an ASP.NET Core project while it runs on localhost. This is a useful feature especially when you don't want to host your application on a specific server but you want to be able to connect two or more consumer-supplier developers machines together.
+	It was a Live .NET community Standup about Visual Studio Dev Tunnel. They introduced a new feature in Visual Studio 17.6 that enables ad-hoc connection 	between machines that cannot directly connect to each other. It creates a URL that allows any device with an internet connection to connect to an ASP.NET 	Core project while it runs on localhost. This is a useful feature especially when you don't want to host your application on a specific server on the 		internet but you want to be able to connect two or more consumer-supplier developers machines together.
 
 5. What do you think about this technical assessment?
 	It was my second time to do this excercise. I did a lot of refactoring to make the code cleaner and enhance its readability and maintainability.
