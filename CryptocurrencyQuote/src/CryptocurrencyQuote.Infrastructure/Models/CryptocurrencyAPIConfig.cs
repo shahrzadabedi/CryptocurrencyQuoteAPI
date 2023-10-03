@@ -1,4 +1,4 @@
-﻿namespace CryptocurrencyQuote.Domain.Model;
+﻿namespace CryptocurrencyQuote.Infrastructure.Models;
 
 public class CryptocurrencyAPIConfig
 {

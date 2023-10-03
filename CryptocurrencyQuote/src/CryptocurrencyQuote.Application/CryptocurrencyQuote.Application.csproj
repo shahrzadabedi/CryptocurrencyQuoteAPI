@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\CryptocurrencyQuote.Domain\CryptocurrencyQuote.Domain.csproj" />
-    <ProjectReference Include="..\src\CryptocurrencyQuote.Infrastructure\CryptocurrencyQuote.Infrastructure.csproj" />
+    <ProjectReference Include="..\CryptocurrencyQuote.Domain\CryptocurrencyQuote.Domain.csproj" />
+    <ProjectReference Include="..\CryptocurrencyQuote.Infrastructure\CryptocurrencyQuote.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

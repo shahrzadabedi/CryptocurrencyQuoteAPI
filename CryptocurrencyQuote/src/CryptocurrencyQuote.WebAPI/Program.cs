@@ -1,6 +1,7 @@
 using CryptocurrencyQuote.Application.CryptoQuote.MappingProfile;
 using CryptocurrencyQuote.Application.Models;
 using CryptocurrencyQuote.Domain;
+using CryptocurrencyQuote.Infrastructure;
 using CryptocurrencyQuote.Infrastructure.ExchangeRates;
 using CryptocurrencyQuote.WebAPI.Filters;
 

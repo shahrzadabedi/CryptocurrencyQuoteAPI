@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CryptocurrencyQuote.Application\CryptocurrencyQuote.Application.csproj" />
+    <ProjectReference Include="..\CryptocurrencyQuote.Application\CryptocurrencyQuote.Application.csproj" />
     <ProjectReference Include="..\CryptocurrencyQuote.Domain\CryptocurrencyQuote.Domain.csproj" />
     <ProjectReference Include="..\CryptocurrencyQuote.Infrastructure\CryptocurrencyQuote.Infrastructure.csproj" />
   </ItemGroup>

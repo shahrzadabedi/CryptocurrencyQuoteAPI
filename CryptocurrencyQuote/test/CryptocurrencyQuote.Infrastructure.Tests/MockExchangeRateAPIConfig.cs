@@ -1,5 +1,4 @@
-﻿using CryptocurrencyQuote.Domain;
-using CryptocurrencyQuote.Domain.Model;
+﻿using CryptocurrencyQuote.Infrastructure.Models;
 
 namespace CryptocurrencyQuote.Infrastructure.Tests;
 

@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7F5DB13E-C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptocurrencyQuote.Infrastructure.Tests", "test\CryptocurrencyQuote.Infrastructure.Tests\CryptocurrencyQuote.Infrastructure.Tests.csproj", "{5A77BA9C-6F0F-4745-B788-B6F3A6EF53CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.Application", "CryptocurrencyQuote.Application\CryptocurrencyQuote.Application.csproj", "{74F308CA-2AB6-4F8E-80A2-1354ED522564}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptocurrencyQuote.Application", "src\CryptocurrencyQuote.Application\CryptocurrencyQuote.Application.csproj", "{74F308CA-2AB6-4F8E-80A2-1354ED522564}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

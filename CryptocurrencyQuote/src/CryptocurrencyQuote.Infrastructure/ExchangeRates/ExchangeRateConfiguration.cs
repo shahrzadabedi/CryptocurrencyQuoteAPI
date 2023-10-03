@@ -1,5 +1,5 @@
 ﻿using CryptocurrencyQuote.Domain;
-using CryptocurrencyQuote.Domain.Model;
+using CryptocurrencyQuote.Infrastructure.Models;
 using Microsoft.Extensions.Configuration;
 
 namespace CryptocurrencyQuote.Infrastructure.ExchangeRates;
