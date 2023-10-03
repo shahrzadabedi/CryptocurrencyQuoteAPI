@@ -15,7 +15,8 @@ It took me 7 hours.
 2. What was the most useful feature that was added to the latest version of your language of choice?
 Please include a snippet of code that shows how you've used it.
 
-.NET 7 was released in November 2022 and it has introduced different new features.One of the features introduced in .NET 7 was build-in rate-limiting middleware. We can install System.Threading.RateLimiting to have access to it. Before that we had to install third-party libraries to be able to rate-limit our endpoints. To rate-limit an existing endpoint we need to first add RateLimiter tothe IServiceCollection and add the RateLimiter middleware. For example here we use basic Fixed-window rate-limiting algorithm and configure that in our Program.cs file:
+.NET 7 was released in November 2022 and it has introduced different new features. One of the features introduced in .NET 7 was build-in rate-limiting middleware. We can install System.Threading.RateLimiting to have access to it.
+Before that we had to install third-party libraries to be able to rate-limit our endpoints. To rate-limit an existing endpoint we need to first add RateLimiter to the IServiceCollection and add the RateLimiter middleware. For example here we use basic Fixed-window rate-limiting algorithm and configure that in our Program.cs file:
 	
  	builder.Services.AddRateLimiter(_ => _
 	    .AddFixedWindowLimiter("fixed", options =>
