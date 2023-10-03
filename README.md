@@ -3,9 +3,9 @@ Shahrzad Abedi
 -----------------------------
 Description:
 
-1-I have implemented this project using .NET 6. and VS2022. I have applied domain-driver architecture for the src part. 
-This three different parts of a DDD project have been put in three projects: CryptocurrencyQuote.Infrastructure, CryptocurrencyQuote.Domain 
-and CryptocurrencyQuote.WebAPI.
+1-I have implemented this project using .NET 7. and VS2022. I have applied Domain-Driver-Design project architecture for the src part. 
+This four different parts of a DDD project have been put in three projects: CryptocurrencyQuote.Infrastructure, CryptocurrencyQuote.Domain, CryptocurrencyQuote.Application
+and CryptocurrencyQuote.WebAPI. I used MediatR for CQRS and Automapper for mapping DTOs.
 
 2-Unit tests are in path test/CryptocurrencyQuote.Infrastructure.Tests 
 
