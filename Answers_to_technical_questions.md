@@ -1,12 +1,11 @@
 Shahrzad Abedi
 ----------------
 Questions:
-
 1. How long did you spend on the coding assignment? What would you add to your solution if you had
 more time? If you didn't spend much time on the coding assignment then use this as an opportunity to
 explain what you would add.
 
-It took me 7 hours.
+It took me 7 hours:
 	1-If I wanted to spend more time I would implement either a user secret key mechanism or a token exchange mechanism so that the API_Key value 
 	would be ommited from the source code since it is not secure to hard-code the secret keys in application source code. 
 	2-I also would implement the integration test for the CryptocurrencyQuote.WebAPI project 
