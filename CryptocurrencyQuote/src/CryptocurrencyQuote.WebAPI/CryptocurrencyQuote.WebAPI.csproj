@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CryptocurrencyQuote.Application\CryptocurrencyQuote.Application.csproj" />
     <ProjectReference Include="..\CryptocurrencyQuote.Domain\CryptocurrencyQuote.Domain.csproj" />
     <ProjectReference Include="..\CryptocurrencyQuote.Infrastructure\CryptocurrencyQuote.Infrastructure.csproj" />
   </ItemGroup>
